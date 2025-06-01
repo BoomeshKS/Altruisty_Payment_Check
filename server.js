@@ -10,7 +10,7 @@ const port = 3000;
 
 
 const db = new Pool({
-  connectionString: 'postgresql://postgres:altruisty555T@db.pjljdredabkszotdbgfv.supabase.co:5432/postgres',
+  connectionString: 'postgresql://postgres.pjljdredabkszotdbgfv:altruisty555T@aws-0-ap-south-1.pooler.supabase.com:5432/postgres',
   ssl: {
     rejectUnauthorized: false,
   },
