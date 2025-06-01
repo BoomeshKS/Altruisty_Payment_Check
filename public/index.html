@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment ID App</title>
+  <link rel="stylesheet" href="./style.css">
+  <!-- <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    input[type="text"] { padding: 8px; width: 300px; }
+    button { padding: 8px 12px; margin-left: 8px; }
+    .result { margin-top: 10px; font-weight: bold; }
+  </style> -->
+</head>
+<body>
+  <h1 class="pay-title" >Payment ID Application</h1>
+
+  <div class="pay-con">
+    <section class="pay-section">
+      <h2>Add Payment ID</h2>
+      <input type="text" id="addPaymentId" placeholder="Enter payment ID" />
+      <button onclick="addPayment()">Add</button>
+      <div id="addResult" class="result"></div>
+    </section>
+
+    <section style="margin-top: 40px;" class="pay-check">
+      <h2>Check Payment ID</h2>
+      <input type="text" id="checkPaymentId" placeholder="Enter payment ID to check" />
+      <button onclick="checkPayment()">Check</button>
+      <div id="checkResult" class="result"></div>
+    </section>
+  </div>
+
+  <script>
+    async function addPayment() {
+      const paymentId = document.getElementById('addPaymentId').value.trim();
+      const addResult = document.getElementById('addResult');
+      addResult.textContent = '';
+      if (!paymentId) {
+        addResult.textContent = 'Please enter a payment ID.';
+        return;
+      }
+      try {
+        const response = await fetch('/add-payment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ payment_id: paymentId })
+        });
+        const data = await response.json();
+        if (response.ok) {
+          addResult.textContent = data.message;
+          document.getElementById('addPaymentId').value = '';
+        } else {
+          addResult.textContent = data.error || 'Error adding payment ID.';
+        }
+      } catch (error) {
+        addResult.textContent = 'Network error.';
+      }
+    }
+
+    async function checkPayment() {
+      const paymentId = document.getElementById('checkPaymentId').value.trim();
+      const checkResult = document.getElementById('checkResult');
+      checkResult.textContent = '';
+      if (!paymentId) {
+        checkResult.textContent = 'Please enter a payment ID.';
+        return;
+      }
+      try {
+        const response = await fetch(`/check-payment?payment_id=${encodeURIComponent(paymentId)}`);
+        const data = await response.json();
+        if (response.ok) {
+          if (data.exists) {
+            checkResult.textContent = 'Payment ID exists in the database.';
+          } else {
+            checkResult.textContent = 'Payment ID does not exist.';
+          }
+        } else {
+          checkResult.textContent = data.error || 'Error checking payment ID.';
+        }
+      } catch (error) {
+        checkResult.textContent = 'Network error.';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto:wght@400;700&family=Poppins:wght@300;500&family=Montserrat:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.6)), url("./bg.jpg");
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.pay-con{
+    display: flex;
+    flex-direction: row;
+}
+
+.pay-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.pay-section, .pay-check {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    width: 450px;
+    height: 300px;
+    padding: 2rem;
+    margin: 2.4rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.pay-section {
+    border-radius: 20px 10px 20px 10px;
+    border: 2px solid transparent;
+    background: linear-gradient(to right, rgba(255, 99, 71, 0.3), rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.2) 80%, rgba(138, 43, 226, 0.3));
+}
+
+.pay-check {
+    border-radius: 10px 20px 10px 20px;
+    border: 2px solid transparent;
+    background: linear-gradient(to right, rgba(30, 144, 255, 0.3), rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.2) 80%, rgba(50, 205, 50, 0.3));
+}
+
+.pay-section:hover, .pay-check:hover {
+    transform: translateY(-5px);
+}
+
+.pay-section h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #afc7cd;
+    margin-bottom: 1.5rem;
+}
+
+.pay-check h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #afc7cd;
+    margin-bottom: 1.5rem;
+}
+
+input[type="text"] {
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: rgb(237, 204, 224);
+    /* background: rgba(248, 249, 250, 0.9); */
+    background: transparent;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #0984e3;
+    box-shadow: 0 0 0 3px rgba(9, 132, 227, 0.1);
+}
+
+input[type="text"]::placeholder {
+    color: #b2bec3;
+    font-weight: 300;
+}
+
+button {
+    font-family: 'Montserrat', sans-serif;
+    background: #0984e3;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    margin-top: 1rem;
+}
+
+button:hover {
+    background: #0871c2;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.result {
+    font-family: 'Poppins', sans-serif;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: aqua;
+    background: transparent;
+    border: 1px solid white;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .pay-title {
+        font-size: 2rem;
+    }
+
+    .pay-section, .pay-check {
+        width: 100%;
+        max-width: 350px;
+        height: 280px;
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    input[type="text"] {
+        font-size: 0.9rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 0.65rem 1.25rem;
+    }
+}
